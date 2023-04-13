@@ -39,7 +39,14 @@ const Body = () => {
     setValues({...values, [name]: value})
   }
 
-  console.log(values);
+
+  const handleClick = (e) => {
+    const isDisabled = Object.values(values).some(value => !value);
+    
+    if(isDisabled) e.preventDefault();
+
+  };
+
 
   return (
     <Container>
@@ -70,7 +77,10 @@ const Body = () => {
             
 
 
-            <Link to={`/chat?name=${values[NAME]}&room=${values[ROOM]}`}>
+            <Link
+            onClick={handleClick} 
+            to={`/chat?name=${values[NAME]}&room=${values[ROOM]}`}
+            >
                 <Button type="submit">Sign</Button>    
             </Link> 
 
